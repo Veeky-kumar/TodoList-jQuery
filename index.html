@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            letter-spacing: 1px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-transform: capitalize;
+        }
+        body{
+            min-height: 100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            /* background:linear-gradient(45deg, #ff0 50%, #333 50%); */
+            background-image:url(/susume.jpg);
+
+            background-attachment: fixed;
+        }
+
+        .container{
+            background: #fff;
+            height: 450px;
+            width: 350px;
+            border-radius: 5px;
+            box-shadow: 0 4px 4px rgb(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+        #input{
+            height: 50px;
+            width: 100%;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            background: #666;
+            color: #fff;
+            padding: 0 5px;
+            margin: 15px 0;
+        }
+        #input::placeholder{
+            color: #bbb;
+        }
+        li{
+            background: #bbb;
+            height: 40px;
+            width: 100%;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 50px;
+            list-style-type: none;
+            position: relative;
+        }
+        ul .fa-trash, .fa-check{
+            position:absolute;
+            cursor: pointer;
+        }
+        ul .fa-trash{
+            color: rgb(206, 42, 5);
+            right: 15px;
+        }
+        ul .fa-check{
+            color: rgb(0, 195, 0);
+            right: 40px;
+        }
+        ul .checked{
+            background: lightgreen;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <section class="back">
+        <div class="container">
+            <input type="text" id="input" placeholder="press enter to add task">
+            <ul></ul>
+        </div>  
+    </section>
+
+</body>
+<script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#input').change(function(){
+            var input = $(this).val();
+            $('ul').append('<li>'+ input+ '<i class="fa fa-check" aria-hidden="true"></i> <i class="fa fa-trash" aria-hidden="true"></i> </li>');
+            $(this).val('');
+        });
+        $('ul').on('click', '.fa-trash', function (){
+            $(this).parent('li').fadeOut(200);
+        })
+        $('ul').on('click','.fa-check', function(){
+            $(this).parent('li').toggleClass('checked');
+        } )
+    });
+</script>
+<!-- <script src="/myscript.js"></script> -->
+</html>
